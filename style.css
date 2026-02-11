@@ -1,68 +1,64 @@
-/* Karakter ve Diyalog Alanı Küçültüldü */
-.character-area { 
-    flex: 1; 
+/* Alt Panel - Butonların Yuvası */
+.ui-panel { 
+    background: #111; 
+    padding: 12px; 
+    border-top: 3px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Bölümler arası boşluk */
+}
+
+/* Öp ve Tokat Butonları Yan Yana */
+.special-actions { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* Ekranı tam ikiye böler */
+    gap: 10px; 
+}
+
+.action-btn { 
+    font-family: 'Press Start 2P'; 
+    font-size: 7px; 
+    padding: 12px; 
+    border: 2px solid #000; 
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: inset -2px -2px 0px rgba(0,0,0,0.3); /* İç derinlik */
+}
+
+#kissBtn { background: #ff4757; }
+#slapBtn { background: #7f8c8d; }
+
+/* Diyalog Şıkları (Alt Alta ve Düzgün) */
+.cards { 
     display: flex; 
     flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    padding: 5px 10px; /* Kenar boşlukları daraltıldı */
-    gap: 8px; /* Görsel ve balon arası boşluk azaltıldı */
+    gap: 6px; 
 }
 
-/* Diyalog Balonu Boyut ve Font Küçültme */
-.speech-bubble { 
-    background: #fff; 
-    color: #000; 
-    padding: 8px; /* İç boşluk minimize edildi */
-    font-size: 7px; /* Font boyutu 7px'e düşürüldü */
-    width: 80%; /* Balon genişliği daraltıldı */
-    border: 2px solid #000; /* Çerçeve inceltildi */
-    line-height: 1.2; 
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.15); 
-    text-align: center;
-}
-
-/* Şık Butonları Font Küçültme */
 .cards button { 
     width: 100%; 
-    background: #2c3e50; 
-    color: #fff; 
-    padding: 8px 10px; /* Buton yüksekliği azaltıldı */
+    background: #222; 
+    color: #eee; 
+    padding: 12px 15px; 
     font-family: 'Press Start 2P'; 
-    font-size: 6.5px; /* Şıkların fontu 6.5px yapıldı */
-    border: 2px solid #555; 
-    text-align: left; 
-}
-
-/* Özel Aksiyon Butonları (Öp/Tokat) */
-.action-btn { 
-    flex: 1; 
-    font-family: 'Press Start 2P'; 
-    font-size: 6px; /* Buton yazıları 6px'e çekildi */
-    padding: 8px; 
-    border: 2px solid #000; 
-}
-
-/* Karakter Görseli Ayarı */
-#characterImage { 
-    width: 50%; /* İstediğin gibi %50 boyutunda */
-    max-height: 30vh; /* Ekranın sadece %30'unu kaplayacak şekilde sınırlandı */
-    object-fit: contain;
-    image-rendering: pixelated; 
-    display: block;
-    margin: 0 auto;
-}
-
-/* HUD ve Mekan Yazısı Küçültme */
-.location-display { 
-    font-size: 6px; /* Mekan ismi fontu küçültüldü */
-    padding: 4px 8px; 
-}
-
-.player-name { 
     font-size: 6.5px; 
+    border: 1px solid #444; 
+    text-align: left; 
+    line-height: 1.4;
+    border-radius: 4px; /* Hafif yuvarlatılmış köşeler */
+    position: relative;
 }
 
-.pixel-stats { 
-    font-size: 10px; 
+/* Şıkların başına minik bir işaret ekleme (Opsiyonel görsel şıklık) */
+.cards button::before {
+    content: ">";
+    margin-right: 8px;
+    color: #4ade80;
+}
+
+/* Tıklama Efekti */
+.cards button:active, .action-btn:active {
+    transform: scale(0.98);
+    filter: brightness(1.2);
 }
