@@ -1,64 +1,130 @@
-/* Alt Panel - Butonların Yuvası */
-.ui-panel { 
-    background: #111; 
-    padding: 12px; 
-    border-top: 3px solid #333;
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Bölümler arası boşluk */
+/* Genel Temizlik */
+* { 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Press Start 2P', cursive;
 }
 
-/* Öp ve Tokat Butonları Yan Yana */
+body { 
+    margin: 0; 
+    background: #121212; /* Tam siyah yerine koyu gri */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    height: -webkit-fill-available;
+}
+
+/* Oyun Ekranı - Düz Yapı */
+.game-screen { 
+    width: 100%; 
+    max-width: 450px; 
+    height: 100vh; 
+    background: #1a1a1a; /* Arka planı düzleştirdik */
+    display: flex; 
+    flex-direction: column; 
+    border: none; /* Dış çerçeveyi kaldırdık */
+}
+
+/* Üst Panel - Sadeleştirilmiş */
+.top-hud { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px; 
+    background: #222; 
+    border-bottom: 1px solid #333; 
+    height: 60px; 
+}
+
+/* Karakter Alanı */
+.character-area { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px;
+    gap: 15px;
+}
+
+#characterImage { 
+    width: 50%; 
+    max-height: 30vh;
+    object-fit: contain;
+    image-rendering: auto; /* Pixel görüntüsünü yumuşattık */
+}
+
+/* Diyalog Balonu - Düz Tasarım */
+.speech-bubble { 
+    background: #ffffff; 
+    color: #333; 
+    padding: 12px; 
+    font-size: 7.5px; 
+    width: 90%; 
+    border-radius: 8px; /* Köşeleri yuvarlattık */
+    border: none; 
+    line-height: 1.4; 
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Alt Panel ve Butonlar */
+.ui-panel { 
+    background: #1a1a1a; 
+    padding: 15px; 
+    border-top: 1px solid #333;
+}
+
+/* Özel Aksiyonlar (Öp/Tokat) */
 .special-actions { 
     display: grid; 
-    grid-template-columns: 1fr 1fr; /* Ekranı tam ikiye böler */
-    gap: 10px; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-bottom: 15px; 
 }
 
 .action-btn { 
-    font-family: 'Press Start 2P'; 
     font-size: 7px; 
     padding: 12px; 
-    border: 2px solid #000; 
+    border: none; 
+    border-radius: 6px; 
     color: #fff;
-    text-align: center;
+    cursor: pointer;
     text-transform: uppercase;
-    box-shadow: inset -2px -2px 0px rgba(0,0,0,0.3); /* İç derinlik */
 }
 
-#kissBtn { background: #ff4757; }
-#slapBtn { background: #7f8c8d; }
+#kissBtn { background: #e91e63; } /* Daha düz bir pembe/kırmızı */
+#slapBtn { background: #607d8b; } /* Daha düz bir gri/mavi */
 
-/* Diyalog Şıkları (Alt Alta ve Düzgün) */
+/* Diyalog Şıkları */
 .cards { 
     display: flex; 
     flex-direction: column; 
-    gap: 6px; 
+    gap: 8px; 
 }
 
 .cards button { 
     width: 100%; 
-    background: #222; 
-    color: #eee; 
-    padding: 12px 15px; 
-    font-family: 'Press Start 2P'; 
-    font-size: 6.5px; 
-    border: 1px solid #444; 
+    background: #333; 
+    color: #fff; 
+    padding: 14px; 
+    font-size: 7px; 
+    border: none; 
+    border-radius: 6px; 
     text-align: left; 
-    line-height: 1.4;
-    border-radius: 4px; /* Hafif yuvarlatılmış köşeler */
-    position: relative;
+    transition: background 0.2s;
 }
 
-/* Şıkların başına minik bir işaret ekleme (Opsiyonel görsel şıklık) */
-.cards button::before {
-    content: ">";
-    margin-right: 8px;
-    color: #4ade80;
+.cards button:active {
+    background: #444;
 }
 
-/* Tıklama Efekti */
-.cards button:active, .action-btn:active {
-    transform: scale(0.98);
-    filter: brightness(1.2);
+/* İsim Ekranı Düzeltme */
+.name-box { 
+    background: #1a1a1a; 
+    border: none; 
+    border-radius: 12px; 
+    padding: 30px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
