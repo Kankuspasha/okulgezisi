@@ -2,8 +2,6 @@ let love = 0; let turn = 0; const maxTurn = 15;
 let playerName = "";
 let isProcessing = false;
 let currentLocationIndex = 0;
-
-// İz takibi ve Gizli Son Sayaçları
 let hasKiss = false;
 let hasSlap = false;
 let kissCounter = 0;
@@ -58,41 +56,48 @@ function getFolder() {
 function updateCharacterImage(imgName) {
     const folder = getFolder();
     const baseName = imgName.split('.')[0]; 
-    const finalPath = folder + "/" + baseName + ".jpg";
+    // Telefonun dosya sistemini zorlamaması için ./ eklendi
+    const finalPath = "./" + folder + "/" + baseName + ".jpg";
     document.getElementById("characterImage").src = finalPath;
 }
 
-function checkSecretEndings() {
-    if (kissCounter >= 5) {
-        secretEnd("Ömer mutluluktan bayıldı! Kalbi bu kadar sevgiyi kaldıramadı. Gezi iptal edildi. ❤️‍🔥");
-        return true;
-    }
-    if (slapCounter >= 5) {
-        secretEnd("Ömer tokat yemekten bayıldı! Gezi iptal edildi, hocalar seni disipline sevk etti! 😵‍💫");
-        return true;
-    }
-    return false;
-}
+function startGame() {
+    const inputField = document.getElementById("playerNameInput");
+    const nameValue = inputField.value.trim().toLowerCase();
 
-function secretEnd(message) {
-    isProcessing = true;
-    document.getElementById("eventBox").innerText = message;
-    document.querySelector(".special-actions").style.display = "none";
-    updateCharacterImage("uzgun.jpg");
-    document.getElementById("cards").innerHTML = '<button id="reloadBtn">TEKRAR DENE</button>';
-    document.getElementById("reloadBtn").onclick = () => location.reload();
+    if (nameValue === "asya") {
+        playerName = "Asya";
+        document.getElementById("name-screen").style.display = "none";
+        document.querySelector(".game-screen").style.display = "flex";
+        
+        document.getElementById("displayPlayerName").innerText = "ASYA";
+        document.getElementById("locationLabel").innerText = locations[0].name.toUpperCase();
+        
+        setupActions();
+        loadEvent();
+    } else {
+        alert("Sadece Asya geziye katılabilir!");
+    }
 }
 
 function setupActions() {
     document.getElementById("kissBtn").onclick = () => {
         if(isProcessing) return;
         hasKiss = true; kissCounter++; slapCounter = 0;
-        if(!checkSecretEndings()) handleSpecial("Ömer'i öptün! ❤️", 1, "mutlu.jpg");
+        if(kissCounter >= 5) {
+            secretEnd("Ömer mutluluktan bayıldı! Kalbi bu kadar sevgiyi kaldıramadı. Gezi iptal. ❤️‍🔥");
+        } else {
+            handleSpecial("Ömer'i öptün! ❤️", 1, "mutlu.jpg");
+        }
     };
     document.getElementById("slapBtn").onclick = () => {
         if(isProcessing) return;
         hasSlap = true; slapCounter++; kissCounter = 0;
-        if(!checkSecretEndings()) handleSpecial("Ömer'e tokat attın! 😲", -1, "sinirli.jpg");
+        if(slapCounter >= 5) {
+            secretEnd("Ömer tokat yemekten bayıldı! Gezi iptal, disipline sevk edildin! 😵‍💫");
+        } else {
+            handleSpecial("Ömer'e tokat attın! 😲", -1, "sinirli.jpg");
+        }
     };
 }
 
@@ -103,6 +108,14 @@ function handleSpecial(msg, pts, img) {
     document.getElementById("eventBox").innerText = msg;
     updateCharacterImage(img);
     setTimeout(nextTurn, 1000);
+}
+
+function secretEnd(message) {
+    isProcessing = true;
+    document.getElementById("eventBox").innerText = message;
+    document.querySelector(".special-actions").style.display = "none";
+    updateCharacterImage("uzgun.jpg");
+    document.getElementById("cards").innerHTML = '<button onclick="location.reload()">TEKRAR DENE</button>';
 }
 
 function loadEvent() {
@@ -129,27 +142,6 @@ function loadEvent() {
         };
         cards.appendChild(btn);
     });
-}
-
-// TELEFONLARDAKİ TAKILMAYI ÇÖZEN GİRİŞ FONKSİYONU
-function startGame() {
-    const inputField = document.getElementById("playerNameInput");
-    const nameValue = inputField.value.trim().toLowerCase();
-
-    if (nameValue === "asya") {
-        playerName = "Asya";
-        document.getElementById("name-screen").style.display = "none";
-        document.querySelector(".game-screen").style.display = "flex";
-        
-        // HUD Bilgilerini Güncelle
-        document.getElementById("displayPlayerName").innerText = "ASYA";
-        document.getElementById("locationLabel").innerText = locations[0].name.toUpperCase();
-        
-        setupActions();
-        loadEvent();
-    } else {
-        alert("Sadece Asya geziye katılabilir!");
-    }
 }
 
 function nextTurn() {
@@ -182,10 +174,6 @@ function endGame() {
     cd.innerHTML = '<button onclick="location.reload()">BAŞA DÖN</button>';
 }
 
-// MOBİL OLAY DİNLEYİCİSİ
 window.onload = () => {
-    const startBtn = document.getElementById("startBtn");
-    if(startBtn) {
-        startBtn.addEventListener("click", startGame);
-    }
+    document.getElementById("startBtn").addEventListener("click", startGame);
 };
