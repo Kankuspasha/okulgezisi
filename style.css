@@ -115,30 +115,24 @@ body {
 .pixel-stats { font-size: 12px; color: #ff4757; }
 
 /* Karakter ve Diyalog Alanı */
-Anladım, karakter görselinin ekranda çok büyük durması özellikle mobil cihazlarda diyalog balonunu aşağı itebilir. style.css dosyasında karakter resminin boyutunu %75'ten %50'ye çektim ve hem bilgisayar hem telefon ekranlarına daha iyi uyum sağlaması için max-height (maksimum yükseklik) sınırını güncelledim.
-
-İşte style.css dosyasında yapman gereken değişiklik:
-
-style.css (Görsel Boyutu Güncellendi)
-CSS
-/* ... diğer kısımlar aynı ... */
-
-#characterImage { 
-    width: 50%; /* %75'ten %50'ye indirildi */
-    max-height: 35vh; /* Mobilde diyalog alanına yer açmak için yükseklik sınırı daraltıldı */
-    object-fit: contain;
-    image-rendering: pixelated; 
-    display: block;
-    margin: 0 auto;
-}
-
 .character-area { 
     flex: 1; 
     display: flex; 
     flex-direction: column; 
-    justify-content: space-evenly; /* Görsel ve metin arasını daha dengeli açar */
+    justify-content: center; 
     align-items: center; 
-    padding: 10px 20px;.speech-bubble { 
+    padding: 20px; 
+    gap: 20px;
+}
+
+#characterImage { 
+    width: 55%; 
+    max-height: 40vh;
+    object-fit: contain;
+    image-rendering: pixelated; 
+}
+
+.speech-bubble { 
     background: #fff; 
     color: #000; 
     padding: 15px; 
