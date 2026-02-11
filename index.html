@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okul Gezisi: Ömer & Asya</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="name-screen" class="overlay">
+        <div class="name-box">
+            <h2>İSMİNİ YAZ</h2>
+            <input type="text" id="playerNameInput" placeholder="Asya..." maxlength="12">
+            <button id="startBtn">GEZİYE BAŞLA</button>
+        </div>
+    </div>
+
+    <div class="game-screen" style="display: none;">
+        <div class="top-hud">
+            <div class="player-profile">
+                <div class="player-avatar">👤</div>
+                <div class="player-info">
+                    <span class="player-name" id="displayPlayerName">ASYA</span>
+                    <div class="progress-container mini"><div class="progress-bar" id="progressBar"></div></div>
+                </div>
+            </div>
+            <div class="location-display" id="locationLabel">OKUL BAHÇESİ</div>
+            <div class="pixel-stats">❤️ <span id="love">0</span></div>
+        </div>
+
+        <div class="character-area">
+            <div class="speech-bubble" id="eventBox">Ömer seni bekliyor...</div>
+            <img id="characterImage" src="resimler/mutlu.jpg" alt="Ömer">
+        </div>
+
+        <div class="ui-panel">
+            <div class="special-actions">
+                <button id="kissBtn" class="action-btn">💋 ÖP</button>
+                <button id="slapBtn" class="action-btn">🖐️ TOKAT</button>
+            </div>
+            <div id="cards" class="cards"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
