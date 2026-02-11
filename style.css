@@ -1,114 +1,68 @@
-/* Genel Ayarlar ve Mobil Fix */
-* { 
-    box-sizing: border-box; 
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
-
-body { 
-    margin: 0; 
-    background: #000; 
-    font-family: 'Press Start 2P', cursive; 
-    color: #fff; 
-    overflow: hidden; 
+/* Karakter ve Diyalog Alanı Küçültüldü */
+.character-area { 
+    flex: 1; 
     display: flex; 
+    flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    height: 100vh;
-    height: -webkit-fill-available;
+    padding: 5px 10px; /* Kenar boşlukları daraltıldı */
+    gap: 8px; /* Görsel ve balon arası boşluk azaltıldı */
 }
 
-/* Giriş Ekranı */
-.overlay { 
-    position: fixed; 
-    width: 100%; height: 100%; 
-    background: #000; 
-    display: flex; justify-content: center; align-items: center; 
-    z-index: 2000; 
-}
-
-.name-box { 
-    text-align: center; border: 3px solid #333; 
-    padding: 15px; background: #1a1a1a; 
-    width: 80%; max-width: 300px; 
-}
-
-.name-box input { 
-    background: #000; border: 2px solid #444; color: #4ade80; 
-    padding: 10px; font-family: 'Press Start 2P'; 
-    margin-bottom: 15px; width: 100%; text-align: center; 
-    font-size: 16px !important; 
-}
-
-/* Oyun Ekranı */
-.game-screen { 
-    width: 100%; max-width: 450px; 
-    height: 100vh; height: -webkit-fill-available;
-    background: #2c3e50; display: flex; flex-direction: column; 
-    transition: background 2s; 
-}
-
-/* Üst Panel (HUD) */
-.top-hud { 
-    display: flex; justify-content: space-between; align-items: center; 
-    padding: 5px 10px; background: rgba(0,0,0,0.9); 
-    border-bottom: 2px solid #333; height: 60px; 
-}
-
-.player-name { font-size: 6px; color: #4ade80; }
-
-.location-display { 
-    font-size: 5.5px; color: #f1c40f; border: 1px solid #444; 
-    padding: 4px 6px; background: #000; 
-}
-
-.pixel-stats { font-size: 8px; color: #ff4757; }
-
-/* Karakter ve Küçük Diyalog Alanı */
-.character-area { 
-    flex: 1; display: flex; flex-direction: column; 
-    justify-content: center; align-items: center; 
-    padding: 5px; gap: 5px; 
-}
-
-#characterImage { 
-    width: 50%; /* İstediğin %50 boyutu */
-    max-height: 25vh; /* Mobilde yer açmak için yükseklik iyice sınırlandı */
-    object-fit: contain; image-rendering: pixelated; 
-}
-
+/* Diyalog Balonu Boyut ve Font Küçültme */
 .speech-bubble { 
-    background: #fff; color: #000; padding: 8px; 
-    font-size: 6.5px; /* Diyalog fontu küçültüldü */
-    width: 85%; border: 2px solid #000; 
-    line-height: 1.2; box-shadow: 3px 3px 0 rgba(0,0,0,0.1); 
+    background: #fff; 
+    color: #000; 
+    padding: 8px; /* İç boşluk minimize edildi */
+    font-size: 7px; /* Font boyutu 7px'e düşürüldü */
+    width: 80%; /* Balon genişliği daraltıldı */
+    border: 2px solid #000; /* Çerçeve inceltildi */
+    line-height: 1.2; 
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.15); 
     text-align: center;
 }
 
-/* Alt Panel ve Butonlar */
-.ui-panel { 
-    background: #111; padding: 10px; 
-    border-top: 2px solid #333; 
-}
-
-.special-actions { display: flex; gap: 5px; margin-bottom: 10px; }
-
-.action-btn { 
-    flex: 1; font-family: 'Press Start 2P'; font-size: 5.5px; 
-    padding: 8px; border: 2px solid #000; color: #fff; 
-}
-
-#kissBtn { background: #ff4757; }
-#slapBtn { background: #7f8c8d; }
-
-.cards { display: flex; flex-direction: column; gap: 5px; }
-
+/* Şık Butonları Font Küçültme */
 .cards button { 
-    width: 100%; background: #2c3e50; color: #fff; 
-    padding: 8px; font-family: 'Press Start 2P'; 
-    font-size: 6px; border: 1px solid #555; text-align: left; 
+    width: 100%; 
+    background: #2c3e50; 
+    color: #fff; 
+    padding: 8px 10px; /* Buton yüksekliği azaltıldı */
+    font-family: 'Press Start 2P'; 
+    font-size: 6.5px; /* Şıkların fontu 6.5px yapıldı */
+    border: 2px solid #555; 
+    text-align: left; 
 }
 
-/* Progress Bar */
-.progress-container.mini { width: 40px; height: 5px; background: #333; }
-.progress-bar { height: 100%; background: #4ade80; width: 0%; transition: 0.5s; }
+/* Özel Aksiyon Butonları (Öp/Tokat) */
+.action-btn { 
+    flex: 1; 
+    font-family: 'Press Start 2P'; 
+    font-size: 6px; /* Buton yazıları 6px'e çekildi */
+    padding: 8px; 
+    border: 2px solid #000; 
+}
+
+/* Karakter Görseli Ayarı */
+#characterImage { 
+    width: 50%; /* İstediğin gibi %50 boyutunda */
+    max-height: 30vh; /* Ekranın sadece %30'unu kaplayacak şekilde sınırlandı */
+    object-fit: contain;
+    image-rendering: pixelated; 
+    display: block;
+    margin: 0 auto;
+}
+
+/* HUD ve Mekan Yazısı Küçültme */
+.location-display { 
+    font-size: 6px; /* Mekan ismi fontu küçültüldü */
+    padding: 4px 8px; 
+}
+
+.player-name { 
+    font-size: 6.5px; 
+}
+
+.pixel-stats { 
+    font-size: 10px; 
+}
